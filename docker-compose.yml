@@ -1,8 +1,8 @@
-version: "3.5"
+version: "3.9"
 
 services:
-  preprod-relay:
-    container_name: preprod-relay
+  relay:
+    container_name: relay
     network_mode: "host"
     build: ./
     restart: always
