@@ -1,8 +1,8 @@
 version: "3.9"
 
 services:
-  relay:
-    container_name: relay
+  cardano-relay:
+    container_name: cardano-relay
     network_mode: "host"
     build: ./
     restart: always
