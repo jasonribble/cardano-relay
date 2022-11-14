@@ -4,7 +4,7 @@ services:
   cardano-relay:
     container_name: cardano-relay
     network_mode: "host"
-    build: ./
+    build: ./Dockerfile.relay
     restart: always
     volumes:
       - ./node-db:/data/db
@@ -15,6 +15,21 @@ services:
       options:
         max-size: "200k"
         max-file: "10"
+  cardano-producer:
+    container_name: cardano-producer
+    network_mode: "host"
+    build: ./Dockerfile.producer
+    restart: always
+    volumes:
+      - ./node-db:/data/db
+      - ./node-config:/config
+      - ./node-ipc:/ipc
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+
 
 volumes:
   node-db:
