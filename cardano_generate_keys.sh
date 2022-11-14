@@ -9,7 +9,7 @@ sudo apt-get install jq curl
 
 if [[ ! -f kes.vkey && ! -f kes.skey ]]; then
   docker run -it --rm -v ${PWD}:/keys --workdir /keys --entrypoint "" inputoutput/cardano-node:1.35.4 \
-  cardano-cli shelley node key-gen-KES \
+  cardano-cli node key-gen-KES \
   --verification-key-file kes.vkey \
   --signing-key-file kes.skey
 else
@@ -18,7 +18,7 @@ fi
 
 if [[ ! -f node.vkey && ! -f node.skey ]]; then
   docker run -it --rm -v ${PWD}:/keys --workdir /keys --entrypoint "" inputoutput/cardano-node:1.35.4 \
-  cardano-cli shelley node key-gen \
+  cardano-cli node key-gen \
   --cold-verification-key-file node.vkey \
   --cold-signing-key-file node.skey \
   --operational-certificate-issue-counter node.counter
@@ -33,7 +33,7 @@ startKesPeriod=${kesPeriod}
 
 if [[ ! -f node.cert ]]; then
   docker run -it --rm -v ${PWD}:/keys --workdir /keys --entrypoint "" inputoutput/cardano-node:1.35.4 \
-  cardano-cli shelley node issue-op-cert \
+  cardano-cli node issue-op-cert \
   --kes-verification-key-file kes.vkey \
   --cold-signing-key-file node.skey \
   --operational-certificate-issue-counter node.counter \
@@ -45,7 +45,7 @@ fi
 
 if [[ ! -f vrf.vkey  && ! -f vrf.skey ]]; then
   docker run -it --rm -v ${PWD}:/keys --workdir /keys --entrypoint "" inputoutput/cardano-node:1.35.4 \
-  cardano-cli shelley node key-gen-VRF \
+  cardano-cli node key-gen-VRF \
   --verification-key-file vrf.vkey \
   --signing-key-file vrf.skey
 else
@@ -54,7 +54,7 @@ fi
 
 if [[ ! -f payment.vkey  && ! -f payment.skey ]]; then
   docker run -it --rm -v ${PWD}:/keys --workdir /keys --entrypoint "" inputoutput/cardano-node:1.35.4 \
-  cardano-cli shelley address key-gen \
+  cardano-cli address key-gen \
   --verification-key-file payment.vkey \
   --signing-key-file payment.skey
 else
@@ -63,7 +63,7 @@ fi
 
 if [[ ! -f stake.vkey  && ! -f stake.skey ]]; then
   docker run -it --rm -v ${PWD}:/keys --workdir /keys --entrypoint "" inputoutput/cardano-node:1.35.4 \
-  cardano-cli shelley stake-address key-gen \
+  cardano-cli stake-address key-gen \
   --verification-key-file stake.vkey \
   --signing-key-file stake.skey
 else
@@ -72,7 +72,7 @@ fi
 
 if [[ -f stake.vkey ]]; then
   docker run -it --rm -v ${PWD}:/keys --workdir /keys --entrypoint "" inputoutput/cardano-node:1.35.4 \
-  cardano-cli shelley stake-address build \
+  cardano-cli stake-address build \
   --stake-verification-key-file stake.vkey \
   --out-file stake.addr \
   --mainnet
@@ -82,7 +82,7 @@ fi
 
 if [[ -f stake.vkey && -f payment.vkey ]]; then
   docker run -it --rm -v ${PWD}:/keys --workdir /keys --entrypoint "" inputoutput/cardano-node:1.35.4 \
-  cardano-cli shelley address build \
+  cardano-cli address build \
   --payment-verification-key-file payment.vkey \
   --stake-verification-key-file stake.vkey \
   --out-file payment.addr \
@@ -93,7 +93,7 @@ fi
 
 if [[ -f stake.vkey ]]; then
   docker run -it --rm -v ${PWD}:/keys --workdir /keys --entrypoint "" inputoutput/cardano-node:1.35.4  \
-  cardano-cli shelley stake-address registration-certificate \
+  cardano-cli stake-address registration-certificate \
   --stake-verification-key-file stake.vkey \
   --out-file stake.cert
 else
@@ -102,7 +102,7 @@ fi
 
 if [[ -f stake.vkey  && -f node.vkey ]]; then
   docker run -it --rm -v ${PWD}:/keys --workdir /keys --entrypoint "" inputoutput/cardano-node:1.35.4 \
-  cardano-cli shelley stake-address delegation-certificate \
+  cardano-cli stake-address delegation-certificate \
   --stake-verification-key-file stake.vkey \
   --cold-verification-key-file node.vkey \
   --out-file deleg.cert
