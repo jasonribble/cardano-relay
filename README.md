@@ -10,7 +10,7 @@ sudo mkdir /docker
 
 cd /docker
 
-git clone https://github.com/jasonribble/relay
+sudo git clone https://github.com/jasonribble/relay
 
 cd /docker/relay
 
@@ -18,7 +18,7 @@ sudo chmod +x start.sh
 
 ./start.sh
 
-docker-compose up -d --build
+docker compose up -d --build
 ```
 
 Get the tip:
