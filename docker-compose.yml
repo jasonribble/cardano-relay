@@ -6,7 +6,7 @@ services:
     build:
       dockerfile: ./Dockerfile.relay 
     env_file:
-      - /cardano.env
+      - ./cardano.env
     restart: always
     ports:
       - "3001:3001"
@@ -25,10 +25,11 @@ services:
     container_name: cardano-producer
     build:
       dockerfile: ./Dockerfile.producer
-    network_mode: "host"
+    env_file:
+      - ./cardano.env
     restart: always
     ports:
-      - "3001:3001"
+      - "3000:3000"
     volumes:
       - ./node-db-producer:/data/db
       - ./node-config:/config
