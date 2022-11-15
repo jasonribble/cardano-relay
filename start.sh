@@ -6,7 +6,6 @@ set -e
 
 sudo apt-get install jq curl
 
-sudo mkdir -p /docker/relay/keys && cd /docker/relay/keys
 
 # Get config 
 sudo mkdir -p /docker/relay/node-config
@@ -17,7 +16,7 @@ sudo wget https://book.world.dev.cardano.org/environments/mainnet/shelley-genesi
 sudo wget https://book.world.dev.cardano.org/environments/mainnet/config.json
 sudo wget https://book.world.dev.cardano.org/environments/mainnet/topology.json
 
-cd /docker/relay
+sudo mkdir -p /docker/relay/keys && cd /docker/relay/keys
 
 # Generate cardano keys for block producer
 if [[ ! -f kes.vkey && ! -f kes.skey ]]; then
