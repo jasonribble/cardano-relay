@@ -3,7 +3,7 @@
 
 set -e
 
-sudo mkdir -p /docker/relay/keys
+sudo mkdir -p /docker/relay/keys && cd /docker/relay/keys
 
 sudo apt-get install jq curl
 
