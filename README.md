@@ -23,5 +23,5 @@ docker-compose up -d --build
 
 Get the tip:
 ```
-docker exec -ti preprod-relay /usr/local/bin/cardano-cli query tip --testnet-magic 1
+docker exec -ti relay /usr/local/bin/cardano-cli query tip
 ```

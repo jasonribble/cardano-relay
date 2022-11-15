@@ -8,7 +8,7 @@ services:
     network_mode: "host"
     restart: always
     volumes:
-      - ./node-db:/data/db
+      - ./node-db-relay:/data/db
       - ./node-config:/config
       - ./node-ipc:/ipc
     logging:
@@ -19,13 +19,14 @@ services:
   cardano-producer:
     container_name: cardano-producer
     build:
-      dockerfile: ./Dockerfile.relay 
+      dockerfile: ./Dockerfile.producer
     network_mode: "host"
     restart: always
     volumes:
-      - ./node-db:/data/db
+      - ./node-db-producer:/data/db
       - ./node-config:/config
       - ./node-ipc:/ipc
+      - ./keys:/keys
     logging:
       driver: "json-file"
       options:
