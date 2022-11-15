@@ -3,8 +3,8 @@ version: "3.9"
 services:
   cardano-relay:
     container_name: cardano-relay
-    image: inputoutput/cardano-node:1.35.4
-    entrypoint: ./node-config/cardano-relay.sh
+    build:
+      dockerfile: ./Dockerfile.relay 
     network_mode: "host"
     restart: always
     volumes:
@@ -18,8 +18,8 @@ services:
         max-file: "10"
   cardano-producer:
     container_name: cardano-producer
-    image: inputoutput/cardano-node:1.35.4
-    entrypoint: ./node-config/cardano-producer.sh
+    build:
+      dockerfile: ./Dockerfile.relay 
     network_mode: "host"
     restart: always
     volumes:
