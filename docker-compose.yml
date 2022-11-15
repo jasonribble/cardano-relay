@@ -9,7 +9,7 @@ services:
     restart: always
     volumes:
       - ./node-db-relay:/data/db
-      - ./node-config-relay:/config
+      - ./node-config:/config
       - ./node-ipc-relay:/ipc
     logging:
       driver: "json-file"
@@ -24,7 +24,7 @@ services:
     restart: always
     volumes:
       - ./node-db-producer:/data/db
-      - ./node-config-producer:/config
+      - ./node-config:/config
       - ./node-ipc-producer:/ipc
       - ./keys:/keys
     logging:
