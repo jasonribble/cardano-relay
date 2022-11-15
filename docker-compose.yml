@@ -4,7 +4,7 @@ services:
   cardano-relay:
     container_name: cardano-relay
     image: inputoutput/cardano-node:1.35.4
-    entrypoint: ./cardano-relay.sh
+    entrypoint: ./node-config/cardano-relay.sh
     network_mode: "host"
     restart: always
     volumes:
@@ -19,7 +19,7 @@ services:
   cardano-producer:
     container_name: cardano-producer
     image: inputoutput/cardano-node:1.35.4
-    entrypoint: ./cardano-producer.sh
+    entrypoint: ./node-config/cardano-producer.sh
     network_mode: "host"
     restart: always
     volumes:
