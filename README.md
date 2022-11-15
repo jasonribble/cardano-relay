@@ -6,17 +6,18 @@ These are docker-compose files for building Cardano node in preprod.
 
 ### Usage
 ```
-apt-get update && apt-get upgrade -y && apt-get install docker-compose -y
-mkdir -p /docker && cd /docker
-git clone https://github.com/os11k/relay.git
-mkdir -p /docker/relay/node-config
-cd ./relay/node-config
-wget https://book.world.dev.cardano.org/environments/preprod/alonzo-genesis.json
-wget https://book.world.dev.cardano.org/environments/preprod/byron-genesis.json
-wget https://book.world.dev.cardano.org/environments/preprod/shelley-genesis.json
-wget https://book.world.dev.cardano.org/environments/preprod/config.json
-wget https://book.world.dev.cardano.org/environments/preprod/topology.json
-cd ..
+sudo mkdir /docker
+
+cd /docker
+
+git clone https://github.com/jasonribble/relay
+
+cd /docker/relay
+
+sudo chmod +x start.sh
+
+./start.sh
+
 docker-compose up -d --build
 ```
 
